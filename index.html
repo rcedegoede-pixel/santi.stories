@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Santino Delsing Photography</title>
+<meta name="description" content="Santino Delsing — freelance travel, lifestyle and street photographer & videographer. UGC content for hotels, cafés and brands across Asia and Australia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4efe7;
+    --bg-2: #ebe3d6;
+    --ink: #1d1915;
+    --ink-soft: #6b6157;
+    --line: #d8cdbd;
+    --accent: #c4692b;
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "Inter", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+    --gutter: clamp(16px, 4vw, 56px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  img { display: block; width: 100%; height: auto; }
+  a { color: inherit; }
+  .mono { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+
+  /* Nav */
+  .nav { position: fixed; inset: 0 0 auto 0; z-index: 20; display: flex; justify-content: space-between; align-items: center; padding: 20px var(--gutter); color: #fff; transition: background .3s, color .3s; }
+  .nav.solid { background: rgba(244,239,231,.92); backdrop-filter: blur(10px); color: var(--ink); border-bottom: 1px solid var(--line); }
+  .nav .brand { font-family: var(--serif); font-size: 26px; text-decoration: none; line-height: 1; }
+  .nav ul { display: flex; gap: 28px; list-style: none; }
+  .nav ul a { text-decoration: none; }
+  .nav ul a:hover { color: var(--accent); }
+
+  /* Hero */
+  .hero { position: relative; height: 100svh; min-height: 560px; overflow: hidden; color: #fff; }
+  .hero img { position: absolute; inset: 0; height: 100%; object-fit: cover; animation: drift 24s ease-out forwards; }
+  @keyframes drift { from { transform: scale(1.08); } to { transform: scale(1); } }
+  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,.55) 100%); }
+  .hero-inner { position: absolute; z-index: 1; left: var(--gutter); right: var(--gutter); bottom: clamp(32px, 7vh, 80px); display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+  .hero h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(56px, 11vw, 168px); line-height: .88; letter-spacing: -.01em; }
+  .hero h1 em { font-style: italic; }
+  .hero .meta { text-align: right; line-height: 2; opacity: .9; }
+  .hero .corner { position: absolute; z-index: 1; top: 88px; left: var(--gutter); line-height: 2; opacity: .85; }
+
+  section { padding: clamp(72px, 12vw, 150px) var(--gutter); }
+  .label { display: flex; align-items: center; gap: 12px; color: var(--ink-soft); margin-bottom: 28px; }
+  .label::before { content: ""; width: 28px; height: 1px; background: currentColor; }
+
+  /* Intro */
+  .intro { display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: end; }
+  .intro h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 5vw, 68px); line-height: 1.05; }
+  .intro h2 em { color: var(--accent); }
+  .intro p { color: var(--ink-soft); max-width: 42ch; }
+  .intro p + p { margin-top: 1em; }
+
+  /* Work */
+  .work { padding-top: 0; }
+  .work-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; margin-bottom: 36px; }
+  .work-head h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 6vw, 84px); line-height: 1; }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+  .filters button { font: inherit; font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; background: none; border: 1px solid var(--line); color: var(--ink); padding: 9px 14px; border-radius: 999px; cursor: pointer; transition: all .2s; }
+  .filters button:hover { border-color: var(--ink); }
+  .filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .grid { columns: 3 320px; column-gap: 14px; }
+  .shot { break-inside: avoid; margin-bottom: 14px; position: relative; overflow: hidden; cursor: zoom-in; background: var(--bg-2); }
+  .shot img { transition: transform .8s cubic-bezier(.2,.7,.2,1), filter .4s; }
+  .shot:hover img { transform: scale(1.035); }
+  .shot figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 40px 14px 12px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.55)); display: flex; justify-content: space-between; opacity: 0; transition: opacity .3s; }
+  .shot:hover figcaption, .shot:focus-visible figcaption { opacity: 1; }
+  .shot.hide { display: none; }
+  .shot:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* Feature */
+  .feature { background: var(--ink); color: var(--bg); display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: center; }
+  .feature .label { color: #a99d8f; }
+  .feature h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(38px, 5vw, 72px); line-height: 1.02; margin-bottom: 24px; }
+  .feature p { color: #c9bfb2; max-width: 46ch; }
+  .feature .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .feature .pair img:last-child { margin-top: 64px; }
+  .feature .tag { margin-top: 32px; color: #a99d8f; }
+
+  /* Services */
+  .services h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 6vw, 84px); line-height: 1; margin-bottom: 48px; max-width: 14ch; }
+  .svc-list { border-top: 1px solid var(--line); }
+  .svc { display: grid; grid-template-columns: 80px 1fr 1.3fr; gap: 24px; padding: 30px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+  .svc .n { color: var(--ink-soft); }
+  .svc h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(26px, 3vw, 38px); line-height: 1.1; }
+  .svc p { color: var(--ink-soft); }
+
+  /* Places */
+  .places { background: var(--bg-2); overflow: hidden; padding-left: 0; padding-right: 0; }
+  .places .label { padding: 0 var(--gutter); }
+  .marquee { display: flex; gap: 48px; white-space: nowrap; width: max-content; animation: scroll 45s linear infinite; font-family: var(--serif); font-size: clamp(48px, 8vw, 120px); line-height: 1.1; }
+  .marquee span:nth-child(even) { font-style: italic; color: var(--accent); }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  /* Contact */
+  .contact { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(32px, 6vw, 96px); align-items: end; }
+  .contact h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(48px, 8vw, 128px); line-height: .92; }
+  .contact h2 em { color: var(--accent); }
+  .contact-links { display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .contact-links a { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--line); text-decoration: none; font-size: 18px; transition: padding .25s, color .25s; }
+  .contact-links a:hover { color: var(--accent); padding-left: 8px; }
+  .contact-links a .mono { color: var(--ink-soft); }
+  footer { padding: 28px var(--gutter); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; color: var(--ink-soft); border-top: 1px solid var(--line); }
+
+  /* Lightbox */
+  .lb { position: fixed; inset: 0; z-index: 50; background: rgba(20,17,14,.96); display: none; align-items: center; justify-content: center; padding: 56px 16px; }
+  .lb.open { display: flex; }
+  .lb img { max-width: min(1200px, 100%); max-height: 100%; width: auto; object-fit: contain; }
+  .lb button { position: absolute; background: none; border: 0; color: #f4efe7; cursor: pointer; font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; padding: 14px; }
+  .lb .close { top: 8px; right: 8px; }
+  .lb .prev { left: 4px; top: 50%; transform: translateY(-50%); font-size: 28px; }
+  .lb .next { right: 4px; top: 50%; transform: translateY(-50%); font-size: 28px; }
+  .lb .cap { position: absolute; bottom: 16px; left: 0; right: 0; text-align: center; color: #c9bfb2; }
+
+  .reveal.in { animation: rise 1s ease both; }
+  @keyframes rise { from { transform: translateY(18px); } to { transform: none; } }
+
+  @media (max-width: 860px) {
+    .nav ul { gap: 16px; }
+    .nav ul li:not(:last-child) { display: none; }
+    .intro, .feature, .contact { grid-template-columns: 1fr; }
+    .svc { grid-template-columns: 1fr; gap: 8px; }
+    .hero .meta { text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<nav class="nav" id="nav">
+  <a href="#top" class="brand">Santi.stories</a>
+  <ul class="mono">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="top">
+  <img src="images/laos-mountains.jpg" alt="Sunrise over misty limestone mountains in Nong Kiau, Laos">
+  <div class="corner mono">Photo roll 01<br>Nong Kiau, Laos</div>
+  <div class="hero-inner">
+    <h1>Santino<br><em>Delsing</em></h1>
+    <div class="meta mono">Photographer · Videographer<br>Travel &amp; lifestyle UGC<br>Based on the road</div>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="reveal">
+    <div class="label mono">About</div>
+    <h2>Stories told in <em>golden light</em> — from Bangkok's backstreets to the mountains of Laos.</h2>
+  </div>
+  <div class="reveal">
+    <p>I'm Santino, a freelance photographer and videographer travelling through Asia and Australia. I shoot the in-between moments: a classic car in Chinatown, a quiet café morning, a rescue pup on adoption day.</p>
+    <p>For hotels, cafés, travel brands and creators I make natural, scroll-stopping content that feels lived-in — not staged.</p>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="work-head">
+    <div>
+      <div class="label mono">Selected work</div>
+      <h2>Portfolio</h2>
+    </div>
+    <div class="filters" role="group" aria-label="Filter photos">
+      <button aria-pressed="true" data-f="all">All</button>
+      <button aria-pressed="false" data-f="travel">Travel</button>
+      <button aria-pressed="false" data-f="street">Street</button>
+      <button aria-pressed="false" data-f="lifestyle">Cafés &amp; lifestyle</button>
+      <button aria-pressed="false" data-f="animals">Animals</button>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="feature">
+  <div class="pair reveal">
+    <img src="images/rescue-dogs.jpg" alt="Rescue dog portrait for an adoption profile" loading="lazy">
+    <img src="images/otter-puppy.jpg" alt="Otter the puppy on adoption day" loading="lazy">
+  </div>
+  <div class="reveal">
+    <div class="label mono">Featured project</div>
+    <h2>Adoption portraits for Rescue Paws Thailand</h2>
+    <p>Portraits that give rescue dogs their best first impression. Each pup got a calm, patient shoot so their personality shows — and helps them find a home faster. Otter, one of them, has since been adopted.</p>
+    <p class="tag mono">Animal photography · Non-profit · Thailand</p>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="label mono reveal">Services</div>
+  <h2 class="reveal">What I can make for you</h2>
+  <div class="svc-list">
+    <div class="svc reveal"><span class="n mono">01</span><h3>Travel &amp; lifestyle UGC</h3><p>Authentic photo and short-form video content for brands and tourism boards, made to feel native on Instagram and TikTok.</p></div>
+    <div class="svc reveal"><span class="n mono">02</span><h3>Hotels &amp; Airbnbs</h3><p>Interiors, details and atmosphere shots that make guests want to book — delivered ready for listings and socials.</p></div>
+    <div class="svc reveal"><span class="n mono">03</span><h3>Cafés &amp; restaurants</h3><p>Food, drinks and the people around them, in natural light. Ideal for menus, launches and social feeds.</p></div>
+    <div class="svc reveal"><span class="n mono">04</span><h3>Videography &amp; reels</h3><p>Cinematic travel reels and behind-the-scenes clips, shot and edited for vertical formats.</p></div>
+    <div class="svc reveal"><span class="n mono">05</span><h3>Animal &amp; shelter portraits</h3><p>Patient, kind portrait sessions for shelters and pet owners.</p></div>
+  </div>
+</section>
+
+<section class="places" aria-label="Places photographed">
+  <div class="label mono">Shot on location in</div>
+  <div class="marquee" aria-hidden="true">
+    <span>Thailand</span><span>Laos</span><span>Japan</span><span>South Korea</span><span>Indonesia</span><span>Singapore</span><span>Malaysia</span><span>Australia</span>
+    <span>Thailand</span><span>Laos</span><span>Japan</span><span>South Korea</span><span>Indonesia</span><span>Singapore</span><span>Malaysia</span><span>Australia</span>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="reveal">
+    <div class="label mono">Contact</div>
+    <h2>Let's make<br>something <em>together.</em></h2>
+  </div>
+  <div class="contact-links reveal">
+    <a href="mailto:santinodelsing@hotmail.com">santinodelsing@hotmail.com <span class="mono">Email</span></a>
+    <a href="https://www.instagram.com/santi.stories/" target="_blank" rel="noopener">@santi.stories <span class="mono">Portfolio IG</span></a>
+    <a href="https://www.instagram.com/santino.delsing/" target="_blank" rel="noopener">@santino.delsing <span class="mono">Personal IG</span></a>
+  </div>
+</section>
+
+<footer class="mono">
+  <span>© <span id="year"></span> Santino Delsing</span>
+  <span>Photography · Videography · UGC</span>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+  <button class="close" aria-label="Close">Close ✕</button>
+  <button class="prev" aria-label="Previous">‹</button>
+  <img alt="">
+  <button class="next" aria-label="Next">›</button>
+  <div class="cap mono"></div>
+</div>
+
+<script>
+  const photos = [
+    ["bangkok-classic", "street", "Classic in Chinatown", "Bangkok"],
+    ["mt-fuji", "travel", "Getting lost at Mt Fuji", "Japan"],
+    ["seoul-books", "street", "Written in the Akasha", "Seoul"],
+    ["different-perspective", "street", "Different perspective", "Tokyo"],
+    ["smoothie", "lifestyle", "Smoothie spot", "Café shoot"],
+    ["pai", "travel", "Thoughts in motion", "Pai"],
+    ["bangkok-pacman", "street", "Caught in the moment", "Bangkok"],
+    ["gili", "travel", "Island vibes", "Gili"],
+    ["tokyo-drink", "lifestyle", "Favourite drink", "Tokyo"],
+    ["kyoto", "street", "Kyoto is something else", "Kyoto"],
+    ["tokyo-day-two", "street", "Second day in Tokyo", "Tokyo"],
+    ["prambanan", "travel", "Prambanan", "Central Java"],
+    ["chinatown-snack", "street", "Snack time", "Bangkok"],
+    ["otter-puppy", "animals", "Otter, adopted", "Thailand"],
+    ["singapore", "travel", "Sunset", "Singapore"],
+    ["laos-life", "street", "Life in Laos", "Laos"],
+    ["ubud", "lifestyle", "Slow days", "Ubud"],
+    ["borobudur", "travel", "Borobudur", "Indonesia"],
+    ["tokyo-yakitori", "street", "Yakitori alley", "Tokyo"],
+    ["nong-kiau", "travel", "Travel notes", "Nong Kiau"],
+    ["nagamachi", "street", "Samurai district", "Kanazawa"],
+    ["rescue-dogs", "animals", "Rescue Paws", "Thailand"],
+  ];
+
+  const grid = document.getElementById("grid");
+  grid.innerHTML = photos.map(([f, cat, title, place], i) => `
+    <figure class="shot" data-cat="${cat}" data-i="${i}" tabindex="0">
+      <img src="images/${f}.jpg" alt="${title} — ${place}" loading="lazy">
+      <figcaption class="mono"><span>${title}</span><span>${place}</span></figcaption>
+    </figure>`).join("");
+
+  // Filters
+  const buttons = document.querySelectorAll(".filters button");
+  buttons.forEach(b => b.addEventListener("click", () => {
+    buttons.forEach(x => x.setAttribute("aria-pressed", x === b));
+    document.querySelectorAll(".shot").forEach(s =>
+      s.classList.toggle("hide", b.dataset.f !== "all" && s.dataset.cat !== b.dataset.f));
+  }));
+
+  // Lightbox
+  const lb = document.getElementById("lb"), lbImg = lb.querySelector("img"), lbCap = lb.querySelector(".cap");
+  let current = 0;
+  const visible = () => [...document.querySelectorAll(".shot:not(.hide)")].map(s => +s.dataset.i);
+  const show = i => {
+    current = i;
+    const [f, , title, place] = photos[i];
+    lbImg.src = `images/${f}.jpg`; lbImg.alt = `${title} — ${place}`;
+    lbCap.textContent = `${title} · ${place}`;
+    lb.classList.add("open"); document.body.style.overflow = "hidden";
+  };
+  const step = d => { const v = visible(); show(v[(v.indexOf(current) + d + v.length) % v.length]); };
+  const close = () => { lb.classList.remove("open"); document.body.style.overflow = ""; };
+  grid.addEventListener("click", e => { const s = e.target.closest(".shot"); if (s) show(+s.dataset.i); });
+  grid.addEventListener("keydown", e => { const s = e.target.closest(".shot"); if (s && e.key === "Enter") show(+s.dataset.i); });
+  lb.querySelector(".close").onclick = close;
+  lb.querySelector(".prev").onclick = () => step(-1);
+  lb.querySelector(".next").onclick = () => step(1);
+  lb.addEventListener("click", e => { if (e.target === lb) close(); });
+  document.addEventListener("keydown", e => {
+    if (!lb.classList.contains("open")) return;
+    if (e.key === "Escape") close();
+    if (e.key === "ArrowLeft") step(-1);
+    if (e.key === "ArrowRight") step(1);
+  });
+
+  // Nav + reveal
+  const nav = document.getElementById("nav");
+  const onScroll = () => nav.classList.toggle("solid", scrollY > innerHeight * 0.8);
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .15 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
