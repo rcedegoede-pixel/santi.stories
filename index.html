@@ -145,7 +145,7 @@
 </nav>
 
 <header class="hero" id="top">
-  <img src="images/laos-mountains.jpg" alt="Sunrise over misty limestone mountains in Nong Kiau, Laos">
+  <img src="laos-mountains.jpg" alt="Sunrise over misty limestone mountains in Nong Kiau, Laos">
   <div class="corner mono">Photo roll 01<br>Nong Kiau, Laos</div>
   <div class="hero-inner">
     <h1>Santino<br><em>Delsing</em></h1>
@@ -183,8 +183,8 @@
 
 <section class="feature">
   <div class="pair reveal">
-    <img src="images/rescue-dogs.jpg" alt="Rescue dog portrait for an adoption profile" loading="lazy">
-    <img src="images/otter-puppy.jpg" alt="Otter the puppy on adoption day" loading="lazy">
+    <img src="rescue-dogs.jpg" alt="Rescue dog portrait for an adoption profile" loading="lazy">
+    <img src="otter-puppy.jpg" alt="Otter the puppy on adoption day" loading="lazy">
   </div>
   <div class="reveal">
     <div class="label mono">Featured project</div>
@@ -268,7 +268,7 @@
   const grid = document.getElementById("grid");
   grid.innerHTML = photos.map(([f, cat, title, place], i) => `
     <figure class="shot" data-cat="${cat}" data-i="${i}" tabindex="0">
-      <img src="images/${f}.jpg" alt="${title} — ${place}" loading="lazy">
+      <img src="${f}.jpg" alt="${title} — ${place}" loading="lazy">
       <figcaption class="mono"><span>${title}</span><span>${place}</span></figcaption>
     </figure>`).join("");
 
@@ -287,7 +287,7 @@
   const show = i => {
     current = i;
     const [f, , title, place] = photos[i];
-    lbImg.src = `images/${f}.jpg`; lbImg.alt = `${title} — ${place}`;
+    lbImg.src = `${f}.jpg`; lbImg.alt = `${title} — ${place}`;
     lbCap.textContent = `${title} · ${place}`;
     lb.classList.add("open"); document.body.style.overflow = "hidden";
   };
